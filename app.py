@@ -69,6 +69,7 @@ DIALOG = MainDialog(RECOGNIZER, BOOKING_DIALOG, telemetry_client=TELEMETRY_CLIEN
 BOT = DialogAndWelcomeBot(CONVERSATION_STATE, USER_STATE, DIALOG, TELEMETRY_CLIENT)
 
 
+
 # Listen for incoming requests on /api/messages.
 async def messages(req: Request) -> Response:
     # Main bot message handler.
@@ -86,12 +87,13 @@ async def messages(req: Request) -> Response:
     return Response(status=HTTPStatus.OK)
 
 def init_function(argv):
-    APP = web.Application(middlewares=[bot_telemetry_middleware, aiohttp_error_middleware])
+    APP = web.Application(middlewares=[aiohttp_error_middleware])
     APP.router.add_post("/api/messages", messages)
     return APP
 
 if __name__ == "__main__":
     APP = init_function(None)
+    
     try:
         web.run_app(APP, host="localhost", port=CONFIG.PORT)
     except Exception as error:

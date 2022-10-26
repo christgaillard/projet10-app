@@ -86,13 +86,13 @@ async def messages(req: Request) -> Response:
         return json_response(data=response.body, status=response.status)
     return Response(status=HTTPStatus.OK)
 
-def init_function(argv):
+def init_func(argv):
     APP = web.Application(middlewares=[aiohttp_error_middleware])
     APP.router.add_post("/api/messages", messages)
     return APP
 
 if __name__ == "__main__":
-    APP = init_function(None)
+    APP = init_func(None)
     
     try:
         web.run_app(APP, host="localhost", port=CONFIG.PORT)

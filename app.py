@@ -87,6 +87,7 @@ async def messages(req: Request) -> Response:
     return Response(status=HTTPStatus.OK)
 #init function
 def init_func(argv):
+    from aiohttp import web
     APP = web.Application(middlewares=[aiohttp_error_middleware])
     APP.router.add_post("/api/messages", messages)
     return APP

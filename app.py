@@ -34,6 +34,9 @@ from bots import DialogAndWelcomeBot
 from adapter_with_error_handler import AdapterWithErrorHandler
 from flight_booking_recognizer import FlightBookingRecognizer
 
+import logging
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+
 CONFIG = DefaultConfig()
 
 # Create adapter.
@@ -85,9 +88,11 @@ async def messages(req: Request) -> Response:
     if response:
         return json_response(data=response.body, status=response.status)
     return Response(status=HTTPStatus.OK)
+
+
 #init function
 def init_func(argv):
-    from aiohttp import web
+#    from aiohttp import web
     APP = web.Application(middlewares=[aiohttp_error_middleware])
     APP.router.add_post("/api/messages", messages)
     return APP

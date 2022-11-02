@@ -91,14 +91,14 @@ async def messages(req: Request) -> Response:
 
 
 #init function
-def start_func(argv):
+def init_func(argv):
 #    from aiohttp import web
     APP = web.Application(middlewares=[aiohttp_error_middleware])
     APP.router.add_post("/api/messages", messages)
     return APP
 
 if __name__ == "__main__":
-    APP = start_func(None)
+    APP = init_func(None)
     try:
         web.run_app(APP, host="0.0.0.0", port=CONFIG.PORT)
     except Exception as error:

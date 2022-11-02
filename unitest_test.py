@@ -29,7 +29,7 @@ class EmailPromptTest(aiounittest.AsyncTestCase):
          
             #step1 = await adapter.test('hello', 'what is your email adress?')
             #step2 = await step1.send('My email id is toto@titi.com')
-            #await step2.assert_reply("toto@titi.com")
+            await step2.assert_reply("toto@titi.com")
         
 
 

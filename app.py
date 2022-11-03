@@ -11,7 +11,7 @@ This sample shows how to create a bot that demonstrates the following:
 from http import HTTPStatus
 
 #from aiohttp import web
-from aiohttp.web import Request, Response, json_response
+#from aiohttp.web import Request, Response, json_response
 from botbuilder.core import (
     BotFrameworkAdapterSettings,
     ConversationState,
@@ -92,14 +92,14 @@ async def messages(req: Request) -> Response:
 
 #init function
 def init_func(argv):
-#    from aiohttp import web
-    APP = web.Application(middlewares=[aiohttp_error_middleware])
+    from aiohttp import web
+    APP = web.Application(middlewares=[bot_telemetry_middleware, aiohttp_error_middleware])
     APP.router.add_post("/api/messages", messages)
     return APP
 
 if __name__ == "__main__":
     APP = init_func(None)
-    try:
-        web.run_app(APP, host="0.0.0.0", port=CONFIG.PORT)
-    except Exception as error:
-        raise error
+    #try:
+    web.run_app(APP, host="0.0.0.0", port=CONFIG.PORT)
+    #except Exception as error:
+        #raise error

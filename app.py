@@ -10,8 +10,8 @@ This sample shows how to create a bot that demonstrates the following:
 """
 from http import HTTPStatus
 
-#from aiohttp import web
-#from aiohttp.web import Request, Response, json_response
+from aiohttp import web
+from aiohttp.web import Request, Response, json_response
 from botbuilder.core import (
     BotFrameworkAdapterSettings,
     ConversationState,
@@ -99,7 +99,7 @@ def init_func(argv):
 
 if __name__ == "__main__":
     APP = init_func(None)
-    #try:
-    web.run_app(APP, host="0.0.0.0", port=CONFIG.PORT)
-    #except Exception as error:
-        #raise error
+    try:
+        web.run_app(APP, host="0.0.0.0", port=CONFIG.PORT)
+    except Exception as error:
+        raise error

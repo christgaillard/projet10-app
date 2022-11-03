@@ -98,7 +98,6 @@ def init_func(argv):
     return APP
 
 if __name__ == "__main__":
-    
     APP = init_func(None)
     try:
         web.run_app(APP, host="0.0.0.0", port=CONFIG.PORT)

@@ -10,7 +10,7 @@ This sample shows how to create a bot that demonstrates the following:
 """
 from http import HTTPStatus
 
-from aiohttp import web
+#from aiohttp import web
 from aiohttp.web import Request, Response, json_response
 from botbuilder.core import (
     BotFrameworkAdapterSettings,

@@ -39,6 +39,11 @@ from opencensus.ext.azure.log_exporter import AzureLogHandler
 
 CONFIG = DefaultConfig()
 
+logger = logging.getLogger(__name__)
+logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=5a851946-6687-43a8-ab57-72221a74b56e')
+)
+
 # Create adapter.
 # See https://aka.ms/about-bot-adapter to learn more about how bots work.
 SETTINGS = BotFrameworkAdapterSettings(CONFIG.APP_ID, CONFIG.APP_PASSWORD)
@@ -80,7 +85,7 @@ async def messages(req: Request) -> Response:
         body = await req.json()
     else:
         return Response(status=HTTPStatus.UNSUPPORTED_MEDIA_TYPE)
-
+    logger.warning(Response(status=HTTPStatus.UNSUPPORTED_MEDIA_TYPE))
     activity = Activity().deserialize(body)
     auth_header = req.headers["Authorization"] if "Authorization" in req.headers else ""
 
@@ -93,7 +98,7 @@ async def messages(req: Request) -> Response:
 #init function
 def init_func(argv):
     #from aiohttp import web
-    APP = web.Application(middlewares=[ aiohttp_error_middleware])
+    APP = web.Application(middlewares=[bot_telemetry_middleware, aiohttp_error_middleware])
     APP.router.add_post("/api/messages", messages)
     return APP
 

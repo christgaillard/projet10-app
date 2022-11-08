@@ -7,7 +7,7 @@ import os
 
 
 class DefaultConfig:
-    """Configuration for the bot."""
+    """Configuration for the bot. inline"""
 
     PORT = 3978
     APP_ID = os.environ.get("MicrosoftAppId", "")

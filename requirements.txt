@@ -13,7 +13,7 @@ datatypes-date-time>=1.0.0.a1
 azure-cognitiveservices-language-luis>=0.2.0
 msrest>=0.6.10
 pytest
-unittest #pour les test unitaires
+unittest2 #pour les test unitaires
 aiohttp
 python-dotenv
 opencensus-ext-azure>=1.1.7

@@ -1,6 +1,5 @@
 import sys
 import pytest
-import aiounittest
 import unittest  
 import asyncio
 import datetime as dt
@@ -19,15 +18,15 @@ from botbuilder.core.adapters import TestAdapter
 
 def check_date(date_str):
     try:
-        date_obj=dt.datetime.strptime('%m/%d/%y')
-        return date_obj>=dt.datetime.now()
+        date_obj=dt.datetime.strptime(date_str,'%m/%d/%y')
+        return date_obj >= dt.datetime.now()
     except Exception as error:
         return False
         
 
-class Bottest(aiounittest.AsyncTestCase):
-    def test_date(self):
-        d='12/10/2022'  
+class Bottest(unittest.TestCase):
+    def test_date_ok(self):
+        d='12/20/2022'  
         self.assertEqual(check_date(d), True) 
         
     def  test_date_bad_format(self):
@@ -35,6 +34,6 @@ class Bottest(aiounittest.AsyncTestCase):
          self.assertEqual(check_date(d), False)
          
     def test_date_old(self):
-        d='11/15/2020'     
+        d='10/15/2020'     
         self.assertEqual(check_date(d),False)
 

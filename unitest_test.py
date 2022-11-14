@@ -25,7 +25,7 @@ def check_date(date_str):
         return False
         
 
-class Bottest(unittest.TestCase):
+class Bottest(aiounittest.TestCase):
     def test_date(self):
         d='12/10/2022'  
         self.assertEqual(check_date(d), True) 

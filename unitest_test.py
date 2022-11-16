@@ -3,18 +3,7 @@ import pytest
 import unittest  
 import asyncio
 import datetime as dt
-from botbuilder.dialogs.prompts import (AttachmentPrompt,
-                                        PromptOptions,
-                                        PromptValidatorContext)
-from botbuilder.core import(TurnContext,
-                            ConversationState,
-                            MemoryStorage,
-                            MessageFactory)
 
-from botbuilder.schema import ActivityTypes,Attachment,Activity
-from botbuilder.dialogs import DialogSet, DialogTurnStatus
-#from email_prompt import EmailPrompt
-from botbuilder.core.adapters import TestAdapter
 
 def check_date(date_str):
     try:
@@ -24,16 +13,16 @@ def check_date(date_str):
         return False
         
 
-class Bottest(unittest.TestCase):
-    def test_date_ok(self):
-        d='12/20/2022'  
-        self.assertEqual(check_date(d), True) 
+#class Bottest(unittest.TestCase):
+    #def test_date_ok(self):
+        #d='12/20/2022'  
+       #self.assertEqual(check_date(d), True) 
         
     def  test_date_bad_format(self):
          d='25/11/2020'
          self.assertEqual(check_date(d), False)
          
     def test_date_old(self):
-        d='10/15/2020'     
+        d='10/15/2023'     
         self.assertEqual(check_date(d),False)
 

@@ -12,8 +12,7 @@ def check_date(date_str):
     except Exception as error:
         return False
         
-
-#class Bottest(unittest.TestCase):
+class Bottest(unittest.TestCase):
     #def test_date_ok(self):
         #d='12/20/2022'  
        #self.assertEqual(check_date(d), True) 

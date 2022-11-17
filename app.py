@@ -85,7 +85,7 @@ async def messages(req: Request) -> Response:
         body = await req.json()
     else:
         return Response(status=HTTPStatus.UNSUPPORTED_MEDIA_TYPE)
-    logger.warning(Response(status=HTTPStatus.UNSUPPORTED_MEDIA_TYPE))
+    #logger.warning(Response(status=HTTPStatus.UNSUPPORTED_MEDIA_TYPE))
     activity = Activity().deserialize(body)
     auth_header = req.headers["Authorization"] if "Authorization" in req.headers else ""
 

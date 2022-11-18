@@ -22,6 +22,7 @@ from botbuilder.core import (
 from botbuilder.core.integration import aiohttp_error_middleware
 from botbuilder.schema import Activity
 from botbuilder.applicationinsights import ApplicationInsightsTelemetryClient
+from botbuilder.core import MessageFactory, BotTelemetryClient, NullTelemetryClient
 from botbuilder.integration.applicationinsights.aiohttp import (
     AiohttpTelemetryProcessor,
     bot_telemetry_middleware,
@@ -41,7 +42,7 @@ CONFIG = DefaultConfig()
 
 logger = logging.getLogger(__name__)
 logger.addHandler(AzureLogHandler(
-    connection_string='InstrumentationKey=5a851946-6687-43a8-ab57-72221a74b56e')
+    connection_string='InstrumentationKey=d8ab11ff-5b9f-4708-a565-6847c25b61f3')
 )
 
 # Create adapter.

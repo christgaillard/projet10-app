@@ -9,7 +9,14 @@ from botbuilder.dialogs.prompts import ConfirmPrompt, TextPrompt, PromptOptions
 from botbuilder.core import MessageFactory, BotTelemetryClient, NullTelemetryClient
 from .cancel_and_help_dialog import CancelAndHelpDialog
 from .date_resolver_dialog import DateResolverDialog
+import logging
+from opencensus.ext.azure.log_exporter import AzureLogHandler
 
+
+logger = logging.getLogger(__name__)
+logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=d8ab11ff-5b9f-4708-a565-6847c25b61f3')
+)
 
 class BookingDialog(CancelAndHelpDialog):
     """Flight booking implementation."""
@@ -177,6 +184,8 @@ class BookingDialog(CancelAndHelpDialog):
         properties['origin']=booking_details.origin
         properties['str_date']=booking_details.travel_date
         properties['end_date']=booking_details.return_date
+        
+        logger.warning(properties)
         
         self.telemetry_client.track_trace("bad answer", properties, 3)
         

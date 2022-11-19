@@ -42,7 +42,7 @@ CONFIG = DefaultConfig()
 
 logger = logging.getLogger(__name__)
 logger.addHandler(AzureLogHandler(
-    connection_string='InstrumentationKey=d8ab11ff-5b9f-4708-a565-6847c25b61f3')
+    connection_string='InstrumentationKey=5af96405-8ae7-4465-a10e-b5f9a36f0590')
 )
 
 # Create adapter.

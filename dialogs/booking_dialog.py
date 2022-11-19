@@ -167,8 +167,8 @@ class BookingDialog(CancelAndHelpDialog):
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         """Complete the interaction and end the dialog."""
         properties= {}
+        booking_details = step_context.options
         if step_context.result:
-            booking_details = step_context.options
             properties['ok']='ok'
             #booking_details.travel_date = step_context.result
             self.telemetry_client.track_trace("right answer", properties, 3)
@@ -179,7 +179,6 @@ class BookingDialog(CancelAndHelpDialog):
         properties['origin']=booking_details.origin
         properties['str_date']=booking_details.travel_date
         properties['end_date']=booking_details.return_date
-        
         self.telemetry_client.track_trace("bad answer", properties, 3)
         
         return await step_context.end_dialog()
